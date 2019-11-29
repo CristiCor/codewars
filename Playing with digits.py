@@ -25,3 +25,24 @@ dig_pow(46288, 3) should return 51 since 4³ + 6⁴+ 2⁵ + 8⁶ + 8⁷ = 236068
 
 
 
+My sol:
+def dig_pow(n, p):
+    # your code
+    num_pow_lst = []
+    z = str(n)
+    for num in z:
+        num_pow = pow(int(num), p)
+        num_pow_lst.append(num_pow)
+        p += 1
+    num_pow_sum = int(sum(num_pow_lst))
+    if num_pow_sum%n == 0:
+        return int(num_pow_sum/n)
+    else:   
+        return -1
+
+Optimal solution:
+def dig_pow(n, p):
+  s = 0
+  for i, c in enumerate(str(n)):
+   s += pow(int(c), p+i)
+  return s/n if s%n == 0 else -1
